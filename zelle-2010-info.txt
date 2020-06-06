@@ -1,0 +1,6 @@
+title: "Python Programming: An Introduction to Computer Science"
+author: "John Zelle"
+edition: "Second Edition"
+publisher: "Franklin, Beedle & Associates Inc."
+year: "2010"
+publication_type: "book"

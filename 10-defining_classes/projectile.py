@@ -1,0 +1,66 @@
+# File:            projectile.py
+# Date:            2020-03-20
+# Author:          "Hannes Thiersen" <hannesthiersen@gmail.com>
+# Version:         0.1
+# Description:
+#   Provides a simple class for modeling the light of projectiles.
+
+"""
+projectile.py
+Provides a simple class for modeling the flight of projectiles.
+"""
+
+#------------------------------------------------------------------------------
+# IMPORTS
+#------------------------------------------------------------------------------
+from math import sin, cos, radians
+
+#------------------------------------------------------------------------------
+# CLASSES
+#------------------------------------------------------------------------------
+class Projectile():
+
+    """
+    Simulates the flight of simple projectiles near the earth's surface,
+    ignoring wind resistance. Tracking is done in two dimensions, height (y)
+    and distance (x).
+    """
+
+    def __init__(self, angle, velocity, height):
+        """
+        Create a projectile with given launch angle, initial velocity and
+        height.
+        """
+        self.xpos = 0.0
+        self.ypos = height
+        theta = radians(angle)
+        self.xvel = velocity * cos(theta)
+        self.yvel = velocity * sin(theta)
+
+    def update(self, time):
+        """
+        Update the state to this projectile to move it time seconds farther
+        into its flight.
+        """
+        self.xpos = self.xpos + time*self.xvel
+        yvel1 = self.yvel - 9.8*time
+        self.ypos = self.ypos + time*(self.yvel + yvel1)/2.
+        self.yvel = yvel1
+
+    def getX(self):
+        """Returns the x position (distance) of this projectile."""
+        return self.xpos
+
+    def getY(self):
+        """Returns the y position (height) of this projectile."""
+        return self.ypos
+
+#------------------------------------------------------------------------------
+# MAIN
+#------------------------------------------------------------------------------
+def main():
+    pass
+
+#------------------------------------------------------------------------------
+if __name__ == '__main__':
+    main()
